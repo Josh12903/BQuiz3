@@ -10,20 +10,24 @@
       </div>
     </div>
     <style>
-      .movies {
+      .movies{
         width:95%;
         display:flex;
         flex-wrap:wrap;
         justify-content:space-between;
         align-items:center;
-        align-contents:space-evenly;
+        align-content:space-evenly;
       }
 
-      .movie {
+      .movie{
         background-color:#eee;
+        box-sizing:border-box;
         width:48%;
         height:150px;
         margin-bottom:10px;
+        color:black;
+        display:flex;
+        flex-wrap:wrap;
         color:black;
       }
     </style>
@@ -39,19 +43,19 @@
         <div class="movie">
           <div>
             <a href="?do=intro&id=<?=$movie['id'];?>">
-            <img src="pic/" style="width:70px;height:95px">
+            <img src="pic/<?=$movie['poster'];?>" style="width:70px;height:95px">
             </a>
           </div>
-          <div>
-            <div><?=$movie['name'];?></div>
-            <div>分級：
-              <img src="icon/03C0<?=$movie['level'];?>.png" style="width:20px">
-              <?=$levelStr[$movie['level']];?>
-            </div>
-            <div>
-              上映日期：<br><?=$movie['ondate'];?>
-            </div>
-          </div>
+                    <div>
+                      <div><?=$movie['name'];?></div>
+                      <div>分級：
+                        <img src="icon/03C0<?=$movie['level'];?>.png" style="width:20px">
+                        <?=$levelStr[$movie['level']]?>
+                      </div>
+                      <div>
+                        上映日期：<br><?=$movie['ondate'];?>
+                      </div>
+                    </div>
           <div style="width:100%;">
             <button onclick="location.href='?do=intro&id=<?=$movie['id'];?>'">劇情簡介</button>
             <button>線上訂票</button>
