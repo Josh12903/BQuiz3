@@ -107,7 +107,7 @@ function sum($col,...$arg){
 }
 
 
-private function max($col,...$arg){
+function max($col,...$arg){
     $sql="SELECT max(`$col`) FROM $this->table ";
         if(isset($arg[0])){
             if(is_array($arg[0])){
