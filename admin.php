@@ -36,7 +36,7 @@ if(isset($_POST['acc'])){
     ABC影城票價全面八折優惠1個月
     </marquee>
   </div>
-  <div id="mm">
+<div id="mm">
 <?php
 if(isset($_SESSION['login'])){
   ?>
@@ -56,9 +56,7 @@ if(isset($_SESSION['login'])){
     }else{
       include "./back/main.php";
     }
-?>
 
-<?php
 }else{
 ?>
 
