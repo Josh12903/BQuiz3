@@ -17,7 +17,7 @@
                 <img src="./pic/<?=$poster['img'];?>" style="width:60px;height:80px">    
             </div>
             <div class="ct" style="width:25%">
-                <input type="text" name="name" value="<?=$poster['name'];?>">
+                <input type="text" name="name[]" value="<?=$poster['name'];?>">
             </div>
             <div class="ct" style="width:25%">
                 <input type="button" value="往上">
@@ -31,6 +31,7 @@
                 </select>
                 <input type="checkbox" name="sh[]" value="<?=$poster['id'];?> <?=($poster['sh'==1])?'checked':'';?>">顯示
                 <input type="checkbox" name="del[]" value="<?=$poster['id'];?>">刪除
+                <input type="hidden" name="id[]" value="<?=$poster['id'];?>">
             </div>
         </div>
     
