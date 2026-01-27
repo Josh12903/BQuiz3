@@ -1,6 +1,11 @@
 <div>預告片清單</div>
 
-
+<div style="display:flex;justify-content:space-between">
+    <div class="ct">預告片海報</div>
+    <div class="ct">預告片片名</div>
+    <div class="ct">預告片排序</div>
+    <div class="ct">操作</div>
+</div>
 
 
 
