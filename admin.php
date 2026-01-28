@@ -78,8 +78,11 @@ if(isset($_SESSION['login'])){
 <?php
 }
 ?>
+
+
+<div id="bo"> ©Copyright 2010~2014 ABC影城 版權所有 </div>
 </div>
-  <div id="bo"> ©Copyright 2010~2014 ABC影城 版權所有 </div>
 </div>
+
 </body>
 </html>

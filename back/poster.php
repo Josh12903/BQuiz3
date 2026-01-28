@@ -32,7 +32,7 @@
                     <option value="2" <?=($poster['ani']==2)?'selected':'';?>>滑入滑出</option>
                     <option value="3" <?=($poster['ani']==3)?'selected':'';?>>縮放</option>
                 </select>
-                <input type="checkbox" name="sh[]" value="<?=$poster['id'];?> <?=($poster['sh'==1])?'checked':'';?>">顯示
+                <input type="checkbox" name="sh[]" value="<?=$poster['id'];?>" <?=($poster['sh'==1])?'checked':'';?>>顯示
                 <input type="checkbox" name="del[]" value="<?=$poster['id'];?>">刪除
                 <input type="hidden" name="id[]" value="<?=$poster['id'];?>">
             </div>

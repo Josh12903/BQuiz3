@@ -1,4 +1,4 @@
-院線片 管理
+<!-- 院線片 管理 -->
 <style>
     .movie-item {
         display: flex;
@@ -10,7 +10,7 @@
         margin:auto;
     }
 </style>
-<button>新增電影</button>
+<button onclick="location.href='?do=add_movie'">新增電影</button>
 
 
 <div class="movie-item">
