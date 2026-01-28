@@ -1,7 +1,7 @@
 <?php include_once "db.php";
 
-$poster1=$Poster->find($_POST['id'][0]);
-$poster2=$Poster->find($_POST['id'][1]);
+$poster1=$Poster->find($_POST['ids'][0]);
+$poster2=$Poster->find($_POST['ids'][1]);
 
 
 $tmp=$poster1['rank'];

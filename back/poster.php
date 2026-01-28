@@ -23,8 +23,8 @@
                 <input type="text" name="name[]" value="<?=$poster['name'];?>">
             </div>
             <div class="ct" style="width:25%">
-                <input type="button" class="sw" value="往上" data-switch="<?=$prev_id;?>-<?=$poster['id'];?>">
-                <input type="button" class="sw" value="往下" data-switch="<?=$next_id;?>-<?=$poster['id'];?>">
+                <input type="button" class="sw" value="往上" data-sw="<?=$prev_id;?>-<?=$poster['id'];?>">
+                <input type="button" class="sw" value="往下" data-sw="<?=$next_id;?>-<?=$poster['id'];?>">
             </div>
             <div class="ct" style="width:25%">
                 <select name="ani[]" id="">
@@ -73,7 +73,7 @@
 
 <script>
     $(".sw").on("click",function(){
-        let ids=$(this).data("switch").split("-");
+        let ids=$(this).data("sw").split("-");
         $.post("./api/sw.php",{ids,'table':'Poster'},(res)=>{
             console.log(res);
             location.reload();
