@@ -10,7 +10,10 @@
 <div style="height:300px;overflow:auto">
     <?php
     $posters=$Poster->all(" ORDER BY `rank` ASC");
-    foreach($posters as $poster):
+    foreach($posters as $idx => $poster):
+        // 再 聽 邏輯
+        $prev_id=($idx>0)?$posters[$key-1]['id']:$poster['id'];
+        $next_id=(count($posters)-1>$idx)?$posters[$idx+1]['id']:$poster['id'];
     ?>    
         <div style="display:flex;justify-content:space-between;margin:3px 0">
             <div class="ct" style="width:25%">
@@ -20,8 +23,8 @@
                 <input type="text" name="name[]" value="<?=$poster['name'];?>">
             </div>
             <div class="ct" style="width:25%">
-                <input type="button" value="往上">
-                <input type="button" value="往下">
+                <input type="button" value="往上" data-switch="<?=$prev_id;?>-<?=$poster['id'];?>">
+                <input type="button" value="往下" data-switch="<?=$next_id;?>-<?=$poster['id'];?>">
             </div>
             <div class="ct" style="width:25%">
                 <select name="ani" id="">
