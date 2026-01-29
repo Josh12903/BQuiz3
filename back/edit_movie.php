@@ -1,6 +1,6 @@
 <h3 class="ct">編輯院線片</h3>
 
-<form action="./" method="post">
+<form action="./api/add_movie.php" method="post">
     <table style="width:70%;margin:auto">
         <tr>
             <td>影片資料</td>
