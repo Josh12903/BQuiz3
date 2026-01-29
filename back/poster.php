@@ -10,6 +10,8 @@
 <div style="height:300px;overflow:auto">
     <?php
     $posters=$Poster->all(" ORDER BY `rank` ASC");
+
+    if(!empty($posters)): 
     foreach($posters as $idx => $poster):
         // 再 聽 邏輯
         $prev_id=($idx>0)?$posters[$idx-1]['id']:$poster['id'];
@@ -32,20 +34,29 @@
                     <option value="2" <?=($poster['ani']==2)?'selected':'';?>>滑入滑出</option>
                     <option value="3" <?=($poster['ani']==3)?'selected':'';?>>縮放</option>
                 </select>
-                <input type="checkbox" name="sh[]" value="<?=$poster['id'];?>" <?=($poster['sh'==1])?'checked':'';?>>顯示
+                <input type="checkbox" name="sh[]" value="<?=$poster['id'];?>" <?=($poster['sh']==1)?'checked':'';?>>顯示
                 <input type="checkbox" name="del[]" value="<?=$poster['id'];?>">刪除
                 <input type="hidden" name="id[]" value="<?=$poster['id'];?>">
             </div>
         </div>
     
-        <?php
-    endforeach;
+    <?php endforeach; 
+    else:  // ← 如果沒有資料顯示提示
     ?>
-    <div class="ct">
-    <input type="submit" value="編輯確定">
-    <input type="submit" value="重置">
-    </div>
+        <div class="ct" style="padding:50px;color:#999">
+            目前沒有預告片資料
+        </div>
+    <?php
+    endif;  // ← 結束檢查
+    ?>
 </div>
+
+<?php if(!empty($posters)): ?>
+<div class="ct">
+    <input type="submit" value="編輯確定">
+    <input type="reset" value="重置">
+</div>
+<?php endif; ?>
 </form>
 
 
@@ -75,7 +86,7 @@
     $(".sw").on("click",function(){
         let ids=$(this).data("sw").split("-");
         $.post("./api/sw.php",{ids,'table':'Poster'},(res)=>{
-            console.log(res);
+            // console.log(res);
             location.reload();
 
         })
