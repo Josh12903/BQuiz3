@@ -19,6 +19,6 @@ $_POST['rank']=$Movie->max("id")+1;
 
 $Movie->save($_POST);
 
-to("../back.php?do=movie");
+to("../admin.php?do=movie");
 
 ?>

@@ -1,6 +1,6 @@
 <h3 class="ct">新增院線片</h3>
 
-<form action="./" method="post">
+<form action="./api/add_movie.php" method="post" enctype="multipart/form-data">
     <table style="width:70%;margin:auto">
         <tr>
             <td>影片資料</td>
@@ -36,7 +36,7 @@
                             }
                         ?>
                     </select>月
-                    <select name="date" id="">
+                    <select name="day" id="">
                         <?php
                             for($i=1;$i<32;$i++){
                                 echo "<option value='$i'>$i</option>";
