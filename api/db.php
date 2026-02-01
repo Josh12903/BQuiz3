@@ -2,6 +2,13 @@
 
 session_start();
 
+$levelStr=[
+    1=>"普遍級",
+    2=>"輔導級",
+    3=>"保護級",
+    4=>"限制級"
+];
+
 class DB{
     protected $dsn="mysql:host=localhost;dbname=db03;charset=utf8";
     protected $pdo;
@@ -151,7 +158,7 @@ function to($url){
 
 function q($sql){
     $dsn="mysql:host=localhost;dbname=db03;charset=utf8";
-    $pdo=new PDO($this->dsn,'root','');
+    $pdo=new PDO($dsn,'root','');
     return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 }
 
