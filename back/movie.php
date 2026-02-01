@@ -39,9 +39,9 @@ foreach($movies as $movie):
             </div>
         </div>
         <div style="text-align:right">
-            <button>顯示</button>
-            <button>往上</button>
-            <button>往下</button>
+            <button onclick="setShow(<?=$movie['id'];?>)"><?=($movie['sh']==1)?'顯示':'隱藏';?></button>
+            <button class="sw" data-sw="<?=$prev['id'];?>-<?=$poster['id'];?>">往上</button>
+            <button class="sw" data-sw="<?=$next['id'];?>-<?=$poster['id'];?>">往下</button>
             <button onclick="location.href:'?do=edit_movie&id=<?=$movie['id'];?>'">編輯電影</button>
             <button onclick="location.href:'api/del_movie.php?id=<?$movie['id'];?>'">刪除電影</button>
         </div>
@@ -54,3 +54,20 @@ foreach($movies as $movie):
 <?php
 endforeach;
 ?>
+
+
+<script>
+
+    function setShow(id){
+        $.post("api/set_show.php"),{id,'table':'Poster'},(res)=>{
+            location.reload();
+        }
+    }
+
+    $(".sw").on("click",function(){
+    let ids=$(this).data("sw").split("-");
+    $.post("./api/sw.php",{ids,'table':'Movie'}),(res)=>{
+        location.reload();
+    }
+})
+</script>
