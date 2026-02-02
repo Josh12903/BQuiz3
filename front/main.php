@@ -29,6 +29,7 @@
         display:flex;
         flex-wrap:wrap;
         color:black;
+        border-radius:4.5px;
       }
     </style>
     <div class="half">
@@ -37,6 +38,13 @@
         <?php
           $today=date("Y-m-d");
           $ondate=date("Y-m-d",strtotime("-2 days"));
+
+          $all=$Movie->count(" where `sh`=1 && `ondate` between '$ondate' AND '$today'");
+          $div=4;
+          $pages=ceil($all/$div);
+          $now=$_GET['p']??1;
+          $start=($now-1)*$div;
+
           $movies=q("select * from `movies` where `sh`=1 && `ondate` between '$ondate' AND '$today' order by `rank`");
           foreach($movies as $movie):
         ?>
@@ -65,5 +73,20 @@
         endforeach;
         ?>
       </div>
-        <div class="ct"> </div>
+        <div class="ct">
+          <?php
+            if($now-1>0){
+              echo "<a href='?p=".($now-1)."'> < </a>";
+            }
+
+            for($i=1;$i<=$pages;$i++){
+              $fontsize=($i==$now)?"24px":"16px";
+              echo "<a href='?p=$i'> $i </a>";
+            }
+
+            if($now+1<=$pages){
+              echo "<a href='?p=".($now+1)."'> > </a>";
+            }
+          ?>
+        </div>
     </div>
