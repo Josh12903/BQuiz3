@@ -65,14 +65,14 @@
 <div class="half" style="vertical-align:top;">
       <h1>預告片介紹</h1>
       <div class="rb tab" style="width:95%;">
-        <div id="abgne-block-20111227">
+        <!-- <div id="abgne-block-20111227"> -->
           <div class="lists">
             <?php
             $posters=$Poster->all(['sh'=>1]);
             foreach($posters as $idx => $poster):
             ?>
-              <div class="poster">
-                <img src="pic/<?=$poster['img'];?>">
+              <div class="poster" data-ani="<?=$poster['ani'];?>">
+                <img src="pic/<?=$poster['img'];?>" style="width:210px;height:220px;">
                 <div><?=$poster['name'];?></div>
               </div>
             <?php
@@ -95,17 +95,73 @@
             </div>
             <div class="right"></div>
           </div>
-        </div>
+        <!-- </div> -->
       </div>
     </div>
     <script>
-      
+      let posters=$(".poster").length;
+      $(".poster").eq(0).show();
+      let slider=setInterval(()=>{
+        posterTransition();
+      },3000);
+
+      function posterTransition(){
+        let current=$(".poster:visible");
+        let ani=$(current).data("ani");
+        let idx=$(current).index();
+        let next;
+        if($(idx+1<countPosters)){
+          next=$(".poster").eq(idx+1);
+        }else{
+          next=$(".poster").eq(0);
+        }
+
+        switch(ani){
+          case 1:
+        $(current).fadeOut(1000,()=>{
+          $(next).fadeIn(1000);
+        });
+        break;
+        case 2:
+          $(current).slideUp(1000,()=>{
+          $(next).showDown(1000);
+        });
+        break;
+        case 3:
+          $(current).hide(1000,()=>{
+          $(next).show(1000);
+        });
+          }
+        
+
+        console.log(idx,ani,countPosters);
+      }
+
+      // 上一段
+      let btnPostion=0;
+      let countPosters=<?=(count($poster)-4);?>;
+
+      $.(".left,.right").on("click",function(){
+        let w=70; 
+          if($(this).hasClass("left")){
+            // $(".btn").animate(right:)
+            if(btnPostion>0){
+              btnPostion--;
+            }
+            }else{
+            if(btnPostion < countPosters){
+              btnPostion++;
+            }            
+          }
+
+          $(".btn").animate({right:btnPostion*w},500);
+      })
     </script>
     <style>
       .movies{
         width:95%;
         display:flex;
-        flex-wrap:wrap;
+        flex-wrap:wrap; 
         justify-content:space-between;
         align-items:center;
         align-content:space-evenly;
