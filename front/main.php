@@ -145,8 +145,8 @@
             posterTransition(idx);
           })
 
-        console.log(idx,ani,countPosters);
-      }
+        // console.log(idx,ani,countPosters);
+      
 
       // 上一段
       let btnPostion=0;
