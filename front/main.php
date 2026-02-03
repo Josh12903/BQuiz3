@@ -105,16 +105,22 @@
         posterTransition();
       },3000);
 
-      function posterTransition(){
+      function posterTransition(target){
         let current=$(".poster:visible");
         let ani=$(current).data("ani");
         let idx=$(current).index();
         let next;
-        if($(idx+1<countPosters)){
-          next=$(".poster").eq(idx+1);
-        }else{
-          next=$(".poster").eq(0);
-        }
+
+          if(typeof(target)==undefined){
+            
+            if($(idx+1<countPosters)){
+              next=$(".poster").eq(idx+1);
+            }else{
+              next=$(".poster").eq(0);
+            }
+          }else{
+            next=$(".poster").eq(target);
+          }
 
         switch(ani){
           case 1:
@@ -131,8 +137,13 @@
           $(current).hide(1000,()=>{
           $(next).show(1000);
         });
+        break
           }
-        
+        }
+          $(".btn").on('click',function(){
+            let idx=$(this).index();
+            posterTransition(idx);
+          })
 
         console.log(idx,ani,countPosters);
       }
