@@ -111,9 +111,9 @@
         let idx=$(current).index();
         let next;
 
-          if(typeof(target)==undefined){
+          if(typeof(target)=='undefined'){
             
-            if($(idx+1<countPosters)){
+            if(idx+1<posters){
               next=$(".poster").eq(idx+1);
             }else{
               next=$(".poster").eq(0);
@@ -130,14 +130,14 @@
         break;
         case 2:
           $(current).slideUp(1000,()=>{
-          $(next).showDown(1000);
+          $(next).slideDown(1000);
         });
         break;
         case 3:
           $(current).hide(1000,()=>{
           $(next).show(1000);
         });
-        break
+        break;
           }
         }
           $(".btn").on('click',function(){
@@ -150,9 +150,9 @@
 
       // 上一段
       let btnPostion=0;
-      let countPosters=<?=(count($poster)-4);?>;
+      let countPosters=<?=(count($posters)-4);?>;
 
-      $.(".left,.right").on("click",function(){
+      $(".left,.right").on("click",function(){
         let w=70; 
           if($(this).hasClass("left")){
             // $(".btn").animate(right:)
@@ -167,6 +167,19 @@
 
           $(".btn").animate({right:btnPostion*w},500);
       })
+
+      // 0123-10:17
+
+          $(".btns").hover(
+            function(){
+              clearInterval(slider);
+            },
+            function(){
+              slider=setInterval(()=>{
+                posterTransition();
+              },3000);
+            }
+          )
     </script>
     <style>
       .movies{
