@@ -61,4 +61,13 @@
             $("#date").html(dates);
         })
     }
+
+
+        function selectSession(){
+            let movieId=$("#movie").val();
+            let date=$("#date").val();
+            $.get("api/get_sessions.php",{movieId,date},function(sessions){
+                $("#session").html(sessions);
+            })
+        }
 </script>
