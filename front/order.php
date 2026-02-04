@@ -18,9 +18,16 @@
                 <?php
                 $today=date("Y-m-d");
                 $ondate=date("Y-m-d",strtotime("-2 days"));
+
+                $id=$_GET['id']??0;
+
+
                 $movies=$Movie->all(" where `sh`=1 && `ondate` between '$ondate' AND '$today'");
                 foreach($movies as $movie){
-                    echo "<option value='{$movie['id']}'>{$movie['name']}</option>";
+
+                    $selected=(!empty($id) && $id==$movie['id'])?"selected":"";
+
+                    echo "<option value='{$movie['id']}' $selected>{$movie['name']}</option>";
                 }
                 ?>
             </select>
@@ -39,3 +46,19 @@
         </td>
     </tr>
 </table>
+
+
+<script>
+    $("#movie").on("change",function(){
+        let movieId=$(this).val();
+        selectDate(movieId);
+    })
+
+        selectDate(("#movie").val());
+
+    function selectDate(movieId){
+        $.get("api/get_date.php",{movieId},function(dates){
+            $("#date").html(dates);
+        })
+    }
+</script>
