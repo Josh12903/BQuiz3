@@ -74,16 +74,24 @@ $(".send-order").on("click",function(){
     $("#seat").show();
     $("#orderform").hide();
     $("#orderResult").hide();
-})
-$(".prev-order").on("click",function(){
-    $("#seat").hide();
-    $("#orderform").show();
-    $("#orderResult").hide();
-})
-$(".order-btn").on("click",function(){
-    $("#seat").hide();
-    $("#orderform").show();
-    $("#orderResult").show();
+
+    // 非同步傳輸
+    $.get("front/bookin.php",(booking)=>{
+        $("#booking").html(booking);
+    // 上一步
+        $(".prev-order").on("click",function(){
+            $("#seat").hide();
+            $("#orderform").show();
+            $("#orderResult").hide();
+        })
+    // 訂購
+        $(".order-btn").on("click",function(){
+            $("#seat").hide();
+            $("#orderform").show();
+            $("#orderResult").show();
+        })
+    
+    })
 })
 
 // $(".reset").on("click",function(){
