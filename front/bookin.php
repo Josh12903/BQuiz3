@@ -89,7 +89,6 @@
                     // 推進去
                     seats.push(seat)
                     // 改了幾張
-                    $("#tickets").text(seats,length)
                 }else{
                     
                     alert("最多只能選四張票")
@@ -98,7 +97,22 @@
             }else{
                 seats.splice(seats.indexOf(seat),1)
             }
-
-        console.log(seats)
+            
+            $("#tickets").text(seats,length)
+        // console.log(seats)
     }) 
+ 
+
+    $(".order-btn").on("click",function(){
+        let movie=$("#movie").val();
+        let date=$("#date").val();
+        let session=$("#session").val();
+        $.post(".api/order.php",{seat,movie,date,session},()=>{
+            console.log(seats,movie,date,session)
+            // order的
+            $("#seat").hide();
+            $("#orderForm").hide();
+            $("#orderResult").hide();
+        })
+    })
 </script>

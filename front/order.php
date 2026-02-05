@@ -89,13 +89,13 @@ $(".send-order").on("click",function(){
             $("#orderResult").hide();
         })
     // 訂購
-        $(".order-btn").on("click",function(){
-            $("#seat").hide();
-            $("#orderform").show();
-            $("#orderResult").show();
-        })
+    //     $(".order-btn").on("click",function(){
+    //         $("#seat").hide();
+    //         $("#orderform").show();
+    //         $("#orderResult").show();
+    //     })
     
-    })
+    // })
 })
 
 // $(".reset").on("click",function(){
