@@ -75,8 +75,12 @@ $(".send-order").on("click",function(){
     $("#orderform").hide();
     $("#orderResult").hide();
 
+        let movieId=$("#movie").val();
+        let date=$("#date").val();
+        let session=$("#session").val();
+
     // 非同步傳輸
-    $.get("front/bookin.php",(booking)=>{
+    $.get("front/bookin.php",{movieId,date,session}(booking)=>{
         $("#booking").html(booking);
     // 上一步
         $(".prev-order").on("click",function(){

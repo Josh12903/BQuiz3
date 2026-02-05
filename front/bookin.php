@@ -67,6 +67,11 @@
 </div>
 
 開始劃位
+<div class="ct">
+    <p>您選擇的電影是：<?=$movie['name'];?></p>
+    <p>您選擇的時刻是：<?=$_GET['date'];?></p>
+    <p>您已經勾選：<span id='tickets'></span>張票，最多可以購買四張票</p>
 <!-- page -->
 <button class="prev-step">上一步</button>
 <button class="order-btn">訂購</button>
+</div>
