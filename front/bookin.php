@@ -75,3 +75,23 @@
 <button class="prev-step">上一步</button>
 <button class="order-btn">訂購</button>
 </div>
+
+<script>
+
+    let seats=new Array();
+    $(".chk").on('click',function(){
+        let seat=$(this).val();
+        if(seats.length<4){
+            // 推進去
+            seats.push(seat)
+            // 改了幾張
+            $("#tickets").text(seats,length)
+        }else{
+
+            alert("最多只能選四張票")
+
+        }
+
+        console.log(seats)
+    }) 
+</script>
