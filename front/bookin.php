@@ -108,9 +108,10 @@
         let date=$("#date").val();
         let session=$("#session").val();
         $.post(".api/order.php",{seat,movie,date,session},()=>{
-            console.log(seats,movie,date,session)
+            // console.log(seats,movie,date,session)
 
-            console.log(res)
+            // console.log(res)
+                $("#orderResult").html(res)
             
             // order的
             $("#seat").hide();

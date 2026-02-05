@@ -58,7 +58,9 @@
     <button class="prev-step">上一步</button>
     <button class="order-btn">訂購</button>
 </div>
-<div id="orderResult" style="display:none"></div>
+<div id="orderResult" style="display:none">
+    結果
+</div>
 <script>
 
 
@@ -95,7 +97,7 @@ $(".send-order").on("click",function(){
     //         $("#orderResult").show();
     //     })
     
-    // })
+    })
 })
 
 // $(".reset").on("click",function(){
