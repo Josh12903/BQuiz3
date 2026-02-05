@@ -29,8 +29,12 @@ if($date==$today){
 
 
 for($i=$start;$i<6;$i++){
+ // 定位哪一個場次多少個定位呢
 
-    echo "<option value=''>14:00 ~ 16:00 剩餘座位 20 </option>";
+ // 舊的 $sql="SELECT sum(`qt`) FROM `orders` WHERE movie='$movie' && date='{$_GET['date']}' && session='{$duration}'";
+ $qt=20-$Order->sum('qt'," WHERE movie='$movie' && date='{$_GET['date']}' && session='{$duration[$i]}'";
+//  echo $qt;
+    echo "<option value='$i'>{$duration[$i]} 剩餘座位 $qt</option>";
 }
 // echo "<option value=''>16:00 ~ 18:00 剩餘座位 20 </option>";
 // echo "<option value=''>18:00 ~ 20:00 剩餘座位 20 </option>";
