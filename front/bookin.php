@@ -109,6 +109,9 @@
         let session=$("#session").val();
         $.post(".api/order.php",{seat,movie,date,session},()=>{
             console.log(seats,movie,date,session)
+
+            console.log(res)
+            
             // order的
             $("#seat").hide();
             $("#orderForm").hide();
@@ -116,3 +119,5 @@
         })
     })
 </script>
+
+<!-- 前端這裡做完 做後端api order -->
