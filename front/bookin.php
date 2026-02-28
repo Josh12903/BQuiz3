@@ -1,7 +1,7 @@
 <?php include_once "../api/db.php";
 $movie=$Movie->find($_GET['movieId']);
 
-$sql=$Order->all(" WHERE movie='$movie['name']' && date='{$_GET['date']}' && session='{$duration[$_GET['session']]}'");
+$orders=$Order->all(" WHERE movie='{$movie['name']}' && date='{$_GET['date']}' && session='{$duration[$_GET['session']]}'");
 // dd($orders);
 
 $seats=[];
@@ -21,7 +21,7 @@ foreach($orders as $order){
         width: 540px;
         height: 370px;
         margin: auto;
-        background-image:url('../icon/03D04.png');
+        background-image:url('./icon/03D04.png');
         background-size:cover;
     
         padding-top:18px;
@@ -59,18 +59,18 @@ foreach($orders as $order){
      }
 
      .booked{
-        background-image:url('../icon/03D03.png');
+        background-image:url('./icon/03D03.png');
         background-position:center;
-        background-size:no-repeat;
+        background-repeat:no-repeat;
      }
      .null{
-        background-image:url('../icon/03D02.png');
+        background-image:url('./icon/03D02.png');
         background-position:center;
-        background-size:no-repeat;
+        background-repeat:no-repeat;
      }
 </style>
 
-<div id="box"></div>
+<div id="box">
 <div class="seats">
     <?php 
     for($i=0;$i<20;$i++){
@@ -83,21 +83,25 @@ foreach($orders as $order){
         }
         echo (floor($i/5)+1)."排". ($i%5 +1)."號";
 
-        if(in_array($i,$seats)){
+        if(!in_array($i,$seats)){
 
-            echo "<input type='checkbox' value='$i' class='chk'>"
+            echo "<input type='checkbox' value='$i' class='chk'>";
         }
         echo "</div>";
     }
     ?>
 </div>
+</div>
 
-開始劃位
-<div class="ct">
-    <p>您選擇的電影是：<?=$movie['name'];?></p>
-    <p>您選擇的時刻是：<?=$_GET['date'];?></p>
-    <p>您已經勾選：<span id='tickets'></span>張票，最多可以購買四張票</p>
+<!-- 開始劃位 -->
+ <div style="width:540px;margin:auto;background:#ccc;padding:10px">
+<div class="ct" style="width:70%;margin:auto">
+    <div>您選擇的電影是：<?=$movie['name'];?></div>
+    <div>您選擇的時刻是：<?=$_GET['date'];?></div>
+    <div>您已經勾選：<span id='tickets'></span>張票，最多可以購買四張票</div>
+</div>
 <!-- page -->
+ <div class="ct">
 <button class="prev-step">上一步</button>
 <button class="order-btn">訂購</button>
 </div>
@@ -124,7 +128,7 @@ foreach($orders as $order){
                 seats.splice(seats.indexOf(seat),1)
             }
             
-            $("#tickets").text(seats,length)
+            $("#tickets").text(seats.length)
         // console.log(seats)
     }) 
  
@@ -133,16 +137,16 @@ foreach($orders as $order){
         let movie=$("#movie").val();
         let date=$("#date").val();
         let session=$("#session").val();
-        $.post(".api/order.php",{seat,movie,date,session},()=>{
+        $.post("api/order.php",{seats,movie,date,session},(res)=>{
             // console.log(seats,movie,date,session)
 
             // console.log(res)
                 $("#orderResult").html(res)
             
             // order的
-            $("#seat").hide();
+            $("#bookin").hide();
             $("#orderForm").hide();
-            $("#orderResult").hide();
+            $("#orderResult").show();
         })
     })
 </script>

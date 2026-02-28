@@ -5,7 +5,7 @@
     #orderL{
         width: 300px;
         margin: auto;
-        text-align: center;
+        /* text-align: center; */
         padding: 20px;
         background:#eee;
     }
@@ -49,12 +49,12 @@
     </tr>
 </table>
                 <div class="ct">
-                    <button class="send-order">確定</button>
+                    <button type="button" class="send-order">確定</button>
                     <button type="reset">重置</button>
                 </div>
 </div>
 </form>
-<div id="seat" style="display:none">
+<div id="bookin" style="display:none">
     <button class="prev-step">上一步</button>
     <button class="order-btn">訂購</button>
 </div>
@@ -73,7 +73,7 @@
 
 // 邏輯 分類再整理
 $(".send-order").on("click",function(){
-    $("#seat").show();
+    $("#bookin").show();
     $("#orderform").hide();
     $("#orderResult").hide();
 
@@ -83,10 +83,10 @@ $(".send-order").on("click",function(){
 
     // 非同步傳輸
     $.get("front/bookin.php",{movieId,date,session},(booking)=>{
-        $("#booking").html(booking);
+        $("#bookin").html(booking);
     // 上一步
         $(".prev-order").on("click",function(){
-            $("#seat").hide();
+            $("#bookin").hide();
             $("#orderform").show();
             $("#orderResult").hide();
         })
@@ -107,7 +107,8 @@ $(".send-order").on("click",function(){
     function selectDate(movieId){
         $.get("api/get_dates.php",{movieId},function(dates){
             $("#date").html(dates);
-            selectSession();
+
+                selectSession();
         })
     }
 

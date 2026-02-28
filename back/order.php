@@ -5,7 +5,7 @@
     justify-content:space-between;
 }
 .order-cols > div{
-    width: calc(100% / 7);
+    width: calc((100% - 0.6%) / 7);
     text-align: center;
     background: #ddd;
     padding:3px 0;
@@ -16,7 +16,7 @@
     align-items: center;
 }
 .order-item > div{
-    width: calc(100% - 7);
+    width: calc((100% - 0.6%) / 7);
     padding: 3px 0;
     text-align: center;
 }
@@ -28,7 +28,7 @@
 
 <h3 class="ct">訂單管理</h3>
 
-<div class="quick-del" style="display:felx">
+<div class="quick-del" style="display:flex">
     <div>快速刪除：</div>
     <div>
         <!-- type 互相存在變單選 -->
@@ -36,19 +36,19 @@
         <input type="text" name="date" id="date">
     </div>
     <div>
-        <input type="radio" name="type" id="typeMovie" value='date'>依電影：
-        <select type="text" name="movie" id="movie">
+        <input type="radio" name="type" id="typeMovie" value='movie'>依電影：
+        <select name="movie" id="movie">
             <?php
-                $movie=$Order->all(" group by `movie`");
+                $movies=$Order->all(" group by `movie`");
                 foreach($movies as $movie){
-                    echo "<option value='{$movie['name']}'>";
-                    echo $movie['name'];
+                    echo "<option value='{$movie['movie']}'>";
+                    echo $movie['movie'];
                     echo "</option>";
                 }
             ?>
         </select>
+        <button style="margin:0 10px" onclick="qdel()">刪除</button>
     </div>
-    <button style="margin:0 10px" onclick="qdel()">刪除</button>
 </div>
 
 
@@ -67,7 +67,7 @@
         $orders=$Order->all(" order by no desc");
         foreach($orders as $order):
         ?>
-        <div>
+        <div class="order-item">
             <div><?=$order['no'];?></div>
             <div><?=$order['movie'];?></div>
             <div><?=$order['date'];?></div>
@@ -80,15 +80,16 @@
                 echo "<div>";
                 echo floor($seat/5)+1;
                 echo "排";
-                echo $seat/5 +1;
+                echo $seat%5 +1;
                 echo "號";
                 echo "</div>";
             }
-            ?></div>
+            ?>
+            </div>
+            <div>
+                <button onclick="del(<?=$order['id'];?>)">刪除</button>
+            </div>
             
-        </div>
-        <div>
-            <button onclick="del(<?=$order['id'];?>)">刪除</button>
         </div>
         <?php
         endforeach;
