@@ -69,7 +69,7 @@
         selectDate(movieId);
     })
 
-        selectDate(("#movie").val());
+        selectDate($("#movie").val());
 
 // 邏輯 分類再整理
 $(".send-order").on("click",function(){
@@ -82,7 +82,7 @@ $(".send-order").on("click",function(){
         let session=$("#session").val();
 
     // 非同步傳輸
-    $.get("front/bookin.php",{movieId,date,session}(booking)=>{
+    $.get("front/bookin.php",{movieId,date,session},(booking)=>{
         $("#booking").html(booking);
     // 上一步
         $(".prev-order").on("click",function(){
@@ -105,8 +105,9 @@ $(".send-order").on("click",function(){
 // })
 
     function selectDate(movieId){
-        $.get("api/get_date.php",{movieId},function(dates){
+        $.get("api/get_dates.php",{movieId},function(dates){
             $("#date").html(dates);
+            selectSession();
         })
     }
 

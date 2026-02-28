@@ -46,15 +46,15 @@
                 </div>
                 <div>
                     <lable>發行商：</lable>
-                    <input type="text" name="publisher" id="">
+                    <input type="text" name="pub" id="">
                 </div>
                 <div>
                     <lable>導演：</lable>
-                    <input type="text" name="director" id="">
+                    <input type="text" name="dire" id="">
                 </div>
                 <div>
                     <lable>預告影片：</lable>
-                    <input type="file" name="trailer" id="">
+                    <input type="file" name="tes" id="">
                 </div>
                 <div>
                     <lable>電影海報：</lable>

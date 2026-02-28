@@ -8,14 +8,14 @@ $ondate=strtotime($movie['ondate']);
 $gap=floor(($today-$ondate)/(86400));
 
 
-
 for($i=0;$i<(3-$gap);$i++){
     // $diff=2-$i;
     $date=date("Y-m-d",strtotime("+$i days",$today));
         $str=date("m月d日 l",strtotime("+$i days",$today));
     echo "<option value='$date'>";
     echo $str;
-    echo "</option>"; 
+    echo "</option>";
+   
 }
 
 
